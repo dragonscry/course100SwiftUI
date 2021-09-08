@@ -15,6 +15,8 @@ struct AddView: View {
     @State private var amount = ""
     static let types = ["Business", "Personal"]
     
+    @State private var alert = false
+    
     var body: some View {
         NavigationView{
             Form{
@@ -35,8 +37,14 @@ struct AddView: View {
                     self.expenses.items.append(item)
                     self.presentationMode.wrappedValue.dismiss()
                 }
+                else {
+                    self.alert = true
+                }
             })
         }
+        .alert(isPresented: $alert, content: {
+            Alert(title: Text("Mistake!"), message: Text("\(self.amount) is not integer"), dismissButton: .default(Text("OK")))
+        })
     }
 }
 

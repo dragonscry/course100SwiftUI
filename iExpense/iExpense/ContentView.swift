@@ -37,6 +37,33 @@ class Expenses : ObservableObject {
     }
 }
 
+struct AmountModifier : ViewModifier{
+    
+    var amount: Int
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(color(am: amount))
+    }
+    
+    func color (am : Int) -> Color {
+        switch am{
+        case ..<10:
+            return .green
+        case ..<100:
+            return .blue
+        default:
+            return .red
+        }
+    }
+}
+
+extension View {
+    func AmountColor(amount:Int) -> some View{
+        self.modifier(AmountModifier(amount: amount))
+    }
+}
+
 struct ContentView: View {
     
     @ObservedObject var expenses = Expenses()
@@ -52,19 +79,22 @@ struct ContentView: View {
                             Text(item.type)
                         }
                         Spacer()
-                        Text("$\(item.amount)")
+                        Text("$\(item.amount)").AmountColor(amount: item.amount)
                     }
                 }
                 .onDelete(perform: removeItems)
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading: EditButton(), trailing:
                                     Button(action: {
                                         self.showingAddExpense = true
                                     }){
                                         Image(systemName: "plus")
                                     }
+                                
             )
+            
+            //.navigationBarItems(leading: EditButton())
             .sheet(isPresented: $showingAddExpense, content: {
                 AddView(expenses: self.expenses)
             })
