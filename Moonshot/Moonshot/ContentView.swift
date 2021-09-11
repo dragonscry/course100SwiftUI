@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    let astronauts : [Astronaut] = Bundle.main.decode("astronauts.json")
-    let missions : [Mission] = Bundle.main.decode("missions.json")
+     @State var isLaunchDate = true
     
     var body: some View {
         NavigationView{
             List(missions) {mission in
-                NavigationLink(destination: Text("Detail View")){
+                NavigationLink(destination: MissionView(mission: mission, astronauts: astronauts)){
                         Image(mission.image)
                             .resizable()
                             .scaledToFit()
@@ -24,13 +22,39 @@ struct ContentView: View {
                         VStack(alignment: .leading){
                             Text(mission.displayName)
                                 .font(.headline)
-                            Text(mission.formattedLaunchDate)
+                            if isLaunchDate {
+                                Text(mission.formattedLaunchDate)
+                            }
+                            else {
+                                ForEach(mission.crew, id: \.name) {
+                                    crew in
+                                    Text("\(crew.role): \(crewName(name: crew.name))")
+                                }
+                            }
                         }
                     }
             }
             .navigationBarTitle("Moonshot")
+            .navigationBarItems(leading: Button(action: {self.isLaunchDate.toggle()}, label: {
+                Text(isLaunchDate ? "Date" : "Crew")
+            }))
         }
     }
+    
+    func crewName(name:String)->String{
+        
+        var realName = ""
+        
+        for astronaut in astronauts {
+            if astronaut.id == name {
+                realName = astronaut.name
+            }
+        }
+        
+        
+        return realName
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
