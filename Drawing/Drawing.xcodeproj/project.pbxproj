@@ -11,6 +11,7 @@
 		9ABE884B26EE06CF00D17AAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE884A26EE06CF00D17AAD /* ContentView.swift */; };
 		9ABE884D26EE06D000D17AAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ABE884C26EE06D000D17AAD /* Assets.xcassets */; };
 		9ABE885026EE06D000D17AAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ABE884F26EE06D000D17AAD /* Preview Assets.xcassets */; };
+		9ABE885826F3B39900D17AAD /* Sinograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE885726F3B39900D17AAD /* Sinograph.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		9ABE884C26EE06D000D17AAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9ABE884F26EE06D000D17AAD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9ABE885126EE06D000D17AAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ABE885726F3B39900D17AAD /* Sinograph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sinograph.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				9ABE884826EE06CF00D17AAD /* DrawingApp.swift */,
 				9ABE884A26EE06CF00D17AAD /* ContentView.swift */,
+				9ABE885726F3B39900D17AAD /* Sinograph.swift */,
 				9ABE884C26EE06D000D17AAD /* Assets.xcassets */,
 				9ABE885126EE06D000D17AAD /* Info.plist */,
 				9ABE884E26EE06D000D17AAD /* Preview Content */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9ABE884B26EE06CF00D17AAD /* ContentView.swift in Sources */,
+				9ABE885826F3B39900D17AAD /* Sinograph.swift in Sources */,
 				9ABE884926EE06CF00D17AAD /* DrawingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
