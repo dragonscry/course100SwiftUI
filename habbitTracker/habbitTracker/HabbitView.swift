@@ -8,24 +8,22 @@
 import SwiftUI
 
 struct HabbitView: View {
-    
-    let name : String
-    let description : String
-    @State var count : Int
+    @State var habbit : Habbit
+    @ObservedObject var habbits : Habbits
     
     var body: some View {
         VStack{
-            VStack(alignment: .leading) {
-                Text("Habbit : \(name)")
+            VStack{
+                Text("Habbit : \(habbit.name)")
                     .font(.largeTitle)
-                Text("Description: \(description)")
+                Text("Description: \(habbit.description)")
                     .font(.title)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                Text("How many times you do it : \(count)")
+                Text("How many times you do it : \(habbit.count)")
             }
-
-
+            
+            
             Spacer()
             
             Button(action: {increment()}, label: {
@@ -36,16 +34,19 @@ struct HabbitView: View {
             .foregroundColor(.white)
             .cornerRadius(15)
         }
-        .frame(width: .infinity)
+        
     }
     
     func increment(){
-        self.count += 1
+        if let index = self.habbits.habbits.firstIndex(where: {$0.id == self.habbit.id}){
+            habbits.habbits[index].count += 1
+            self.habbit.count += 1
+        }
     }
 }
 
 struct HabbitView_Previews: PreviewProvider {
     static var previews: some View {
-        HabbitView(name: "test", description: "test Description", count: 2)
+        HabbitView(habbit: Habbit(name: "Test", description: "Test Descr", count: 2), habbits: Habbits())
     }
 }

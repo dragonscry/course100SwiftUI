@@ -17,13 +17,15 @@ struct ContentView: View {
             List{
                 ForEach(habbits.habbits){
                     habbit in
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text(habbit.name).font(.headline)
-                            Text(habbit.description)
+                    NavigationLink(destination: HabbitView(habbit: habbit, habbits: self.habbits)) {
+                        HStack{
+                            VStack(alignment: .leading){
+                                Text(habbit.name).font(.headline)
+                                Text(habbit.description)
+                            }
+                            Spacer()
+                            Text("Time Done :\(habbit.count)")
                         }
-                        Spacer()
-                        Text("Time Done :\(habbit.count)")
                     }
                 }
                 .onDelete(perform: removeItems)
