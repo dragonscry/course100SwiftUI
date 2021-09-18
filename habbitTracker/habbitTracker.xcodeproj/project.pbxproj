@@ -12,6 +12,8 @@
 		9A14538B26F67FCA0099E64C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A14538A26F67FCA0099E64C /* Assets.xcassets */; };
 		9A14538E26F67FCA0099E64C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A14538D26F67FCA0099E64C /* Preview Assets.xcassets */; };
 		9A14539626F680100099E64C /* habbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A14539526F680100099E64C /* habbit.swift */; };
+		9A14539826F6831D0099E64C /* HabbitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A14539726F6831D0099E64C /* HabbitView.swift */; };
+		9A14539A26F6872B0099E64C /* AddHabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A14539926F6872B0099E64C /* AddHabbit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		9A14538D26F67FCA0099E64C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9A14538F26F67FCA0099E64C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A14539526F680100099E64C /* habbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = habbit.swift; sourceTree = "<group>"; };
+		9A14539726F6831D0099E64C /* HabbitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitView.swift; sourceTree = "<group>"; };
+		9A14539926F6872B0099E64C /* AddHabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabbit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				9A14538626F67FC80099E64C /* habbitTrackerApp.swift */,
 				9A14538826F67FC80099E64C /* ContentView.swift */,
 				9A14539526F680100099E64C /* habbit.swift */,
+				9A14539726F6831D0099E64C /* HabbitView.swift */,
+				9A14539926F6872B0099E64C /* AddHabbit.swift */,
 				9A14538A26F67FCA0099E64C /* Assets.xcassets */,
 				9A14538F26F67FCA0099E64C /* Info.plist */,
 				9A14538C26F67FCA0099E64C /* Preview Content */,
@@ -141,6 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A14539826F6831D0099E64C /* HabbitView.swift in Sources */,
+				9A14539A26F6872B0099E64C /* AddHabbit.swift in Sources */,
 				9A14538926F67FC80099E64C /* ContentView.swift in Sources */,
 				9A14539626F680100099E64C /* habbit.swift in Sources */,
 				9A14538726F67FC80099E64C /* habbitTrackerApp.swift in Sources */,
