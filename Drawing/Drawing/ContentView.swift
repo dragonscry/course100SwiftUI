@@ -6,40 +6,44 @@
 //
 
 
-struct Arrow : Shape {
-    
-    var amount : CGFloat = 3
-    var with : CGFloat = 1.4
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        var triangle = Path()
-        triangle.move(to: CGPoint(x: rect.maxX/with , y: rect.minY + rect.maxY/7))
-        triangle.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
-        triangle.addLine(to: CGPoint(x: rect.maxX/with, y: rect.maxY - rect.maxY/7))
-        triangle.addLine(to: CGPoint(x: rect.maxX/with, y: rect.minY + rect.maxY/7))
+import SwiftUI
 
-      var rect = CGRect(x: rect.minX, y: rect.minY+(rect.maxX/amount), width: rect.maxY/with, height: rect.maxX-(rect.maxX/amount)*2)
-        
-        path.addRect(rect)
-        path.addPath(triangle)
-        
-        return path
+struct ColorCyclingRectangle: View {
+    var amount = 0.0
+    var steps = 100
+
+    var body: some View {
+        ZStack {
+            ForEach(0..<steps) { value in
+                Rectangle()
+                    .inset(by: CGFloat(value))
+                    .strokeBorder(self.color(for: value, brightness: 1), lineWidth: 2)
+            }
+        }
+    }
+
+    func color(for value: Int, brightness: Double) -> Color {
+        var targetHue = Double(value) / Double(self.steps) + self.amount
+
+        if targetHue > 1 {
+            targetHue -= 1
+        }
+
+        return Color(hue: targetHue, saturation: 1, brightness: brightness)
     }
 }
 
 
-import SwiftUI
-
 struct ContentView: View {
+    
+    @State private var colorCycle = 0.0
     
     var body: some View {
         VStack(spacing: 0){
-            Arrow()
+            ColorCyclingRectangle(amount: colorCycle)
                 .frame(width: 300, height: 300)
-                
-            
+            Spacer()
+            Slider(value: $colorCycle)
         }
     }
 }
