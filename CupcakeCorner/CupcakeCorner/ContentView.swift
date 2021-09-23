@@ -10,34 +10,34 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var order = Order()
+    @ObservedObject var order = anotherOrder()
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Select your cake type", selection: $order.type){
-                        ForEach(0..<Order.types.count, id: \.self){
-                            Text(Order.types[$0])
+                    Picker("Select your cake type", selection: $order.order.type){
+                        ForEach(0..<booking.types.count, id: \.self){
+                            Text(booking.types[$0])
                         }
                     }
                     
-                    Stepper(value: $order.quantity, in: 3...20) {
-                        Text("Number of cakes: \(order.quantity)")
+                    Stepper(value: $order.order.quantity, in: 3...20) {
+                        Text("Number of cakes: \(order.order.quantity)")
                     }
                 }
                 
                 Section {
-                    Toggle(isOn: $order.specialRequestEnabled.animation()){
+                    Toggle(isOn: $order.order.specialRequestEnabled.animation()){
                         Text("Any Special Requestes?")
                     }
                     
-                    if order.specialRequestEnabled{
-                        Toggle(isOn: $order.extraFrosting){
+                    if order.order.specialRequestEnabled{
+                        Toggle(isOn: $order.order.extraFrosting){
                             Text("Add Extra Frosting")
                         }
                         
-                        Toggle(isOn: $order.addSprinkles){
+                        Toggle(isOn: $order.order.addSprinkles){
                             Text("Add Extra Sprinkles?")
                         }
                     }

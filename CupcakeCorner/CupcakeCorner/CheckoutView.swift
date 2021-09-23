@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckoutView: View {
-    @ObservedObject var order: Order
+    @ObservedObject var order: anotherOrder
     
     @State private var titleErrorMessage = ""
     @State private var confirmationMessage = ""
@@ -24,7 +24,7 @@ struct CheckoutView: View {
                         .scaledToFit()
                         .frame(width: geo.size.width)
                     
-                    Text("Your total is $\(order.cost, specifier: "%.2f")")
+                    Text("Your total is $\(order.order.cost, specifier: "%.2f")")
                         .font(.title)
                     
                     Button("Place Order"){
@@ -60,9 +60,9 @@ struct CheckoutView: View {
                 self.showingConfirmation = true
                 return
             }
-            if let decodedOrder = try? JSONDecoder().decode(Order.self, from: data) {
+            if let decodedOrder = try? JSONDecoder().decode(anotherOrder.self, from: data) {
                 self.titleErrorMessage = "Thank You!"
-                self.confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
+                self.confirmationMessage = "Your order for \(decodedOrder.order.quantity)x \(Order.types[decodedOrder.order.type].lowercased()) cupcakes is on its way!"
                 self.showingConfirmation = true
             } else {
                 self.titleErrorMessage = "Oops"
@@ -77,6 +77,6 @@ struct CheckoutView: View {
 
 struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckoutView(order: Order())
+        CheckoutView(order: anotherOrder())
     }
 }
