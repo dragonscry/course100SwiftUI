@@ -9,36 +9,24 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [],
-        animation: .default)
-    private var students: FetchedResults<Student>
-
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Book.entity(), sortDescriptors: []) var books : FetchedResults<Book>
+    @State private var showingAddScreen = false
+    
     var body: some View {
-        VStack {
-            List {
-                ForEach(students, id:\.id) { student in
-                    Text(student.name ?? "Unknown")
+        NavigationView {
+            Text("Count: \(books.count)")
+                .navigationBarTitle("Bookworm")
+                .navigationBarItems(trailing: Button(action: {
+                    self.showingAddScreen.toggle()
+                }){
+                    Image(systemName: "plus")
                 }
-            }
-            
-            Button("Add"){
-                let firstNames = ["Ginny", "Harry", "Hermione", "Luna", "Ron"]
-                let lastNames = ["Granger", "Lovegood", "Potter", "Weasley"]
-
-                let chosenFirstName = firstNames.randomElement()!
-                let chosenLastName = lastNames.randomElement()!
-                
-                let student = Student(context: viewContext)
-                student.id = UUID()
-                student.name = "\(chosenFirstName) \(chosenLastName)"
-                
-                try? self.viewContext.save()
-            }
-
+                ).sheet(isPresented: $showingAddScreen, content: {
+                    AddBookView().environment(\.managedObjectContext, self.moc)
+                })
         }
+        
     }
 }
 
