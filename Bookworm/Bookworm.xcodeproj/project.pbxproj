@@ -16,6 +16,7 @@
 		9A9AAEC726FFBD280011BDE5 /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A9AAEC526FFBD280011BDE5 /* Bookworm.xcdatamodeld */; };
 		9AA3B4D72701004A0004D9D6 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3B4D62701004A0004D9D6 /* RatingView.swift */; };
 		9AA3B4D9270103770004D9D6 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3B4D8270103770004D9D6 /* EmojiRatingView.swift */; };
+		9AA3B4DB27038AAA0004D9D6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3B4DA27038AAA0004D9D6 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		9A9AAEC826FFBD280011BDE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AA3B4D62701004A0004D9D6 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		9AA3B4D8270103770004D9D6 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
+		9AA3B4DA27038AAA0004D9D6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				9AA3B4D8270103770004D9D6 /* EmojiRatingView.swift */,
 				9AA3B4D62701004A0004D9D6 /* RatingView.swift */,
 				9A9AAEBE26FFBD280011BDE5 /* Assets.xcassets */,
+				9AA3B4DA27038AAA0004D9D6 /* DetailView.swift */,
 				9A9AAEC326FFBD280011BDE5 /* Persistence.swift */,
 				9A2E4DF827007BC600C7FB49 /* AddBookView.swift */,
 				9A9AAEC826FFBD280011BDE5 /* Info.plist */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9AAEC426FFBD280011BDE5 /* Persistence.swift in Sources */,
+				9AA3B4DB27038AAA0004D9D6 /* DetailView.swift in Sources */,
 				9A9AAEC726FFBD280011BDE5 /* Bookworm.xcdatamodeld in Sources */,
 				9AA3B4D9270103770004D9D6 /* EmojiRatingView.swift in Sources */,
 				9A9AAEBD26FFBD260011BDE5 /* ContentView.swift in Sources */,
