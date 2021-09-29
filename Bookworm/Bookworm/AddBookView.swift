@@ -13,9 +13,10 @@ struct AddBookView: View {
     
     @State private var title = ""
     @State private var author = ""
-    @State private var genre = ""
+    @State private var genre = "Fantasy"
     @State private var review = ""
     @State private var rating = 3
+    @State private var date = Date()
     
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
@@ -32,6 +33,7 @@ struct AddBookView: View {
                             Text($0)
                         }
                     }
+                    DatePicker("Publish Date", selection: $date, in: ...Date(), displayedComponents: .date)
                 }
                 
                 Section {
@@ -42,12 +44,15 @@ struct AddBookView: View {
                 
                 Section {
                     Button("Save"){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "MM-dd-yyyy"
                         let newBook = Book(context: self.moc)
                         newBook.title = self.title
                         newBook.author = self.author
                         newBook.genre = self.genre
                         newBook.review = self.review
                         newBook.rating = Int16(self.rating)
+                        newBook.date = formatter.string(from: self.date)
                         
                         try? self.moc.save()
                         

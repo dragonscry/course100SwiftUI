@@ -32,6 +32,7 @@ struct DetailView: View {
                 Text(self.book.author ?? "Unknown author")
                     .font(.title)
                     .foregroundColor(.secondary)
+                Text("Published date is: \(self.book.date ?? "No date")").padding().foregroundColor(.secondary)
                 Text(self.book.review ?? "No review")
                     .padding()
                 
