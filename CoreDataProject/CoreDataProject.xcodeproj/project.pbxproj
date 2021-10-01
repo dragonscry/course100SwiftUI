@@ -13,6 +13,10 @@
 		9A97C6132706278200FF5E4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A97C6122706278200FF5E4B /* Preview Assets.xcassets */; };
 		9A97C6152706278200FF5E4B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C6142706278200FF5E4B /* Persistence.swift */; };
 		9A97C6182706278200FF5E4B /* CoreDataProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C6162706278200FF5E4B /* CoreDataProject.xcdatamodeld */; };
+		9A97C62327077B9C00FF5E4B /* Country+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C61F27077B9C00FF5E4B /* Country+CoreDataClass.swift */; };
+		9A97C62427077B9C00FF5E4B /* Country+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C62027077B9C00FF5E4B /* Country+CoreDataProperties.swift */; };
+		9A97C62527077B9C00FF5E4B /* Candy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C62127077B9C00FF5E4B /* Candy+CoreDataClass.swift */; };
+		9A97C62627077B9C00FF5E4B /* Candy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C62227077B9C00FF5E4B /* Candy+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		9A97C6142706278200FF5E4B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9A97C6172706278200FF5E4B /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
 		9A97C6192706278200FF5E4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A97C61F27077B9C00FF5E4B /* Country+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9A97C62027077B9C00FF5E4B /* Country+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9A97C62127077B9C00FF5E4B /* Candy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candy+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9A97C62227077B9C00FF5E4B /* Candy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candy+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 		9A97C60A2706278100FF5E4B /* CoreDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				9A97C61F27077B9C00FF5E4B /* Country+CoreDataClass.swift */,
+				9A97C62027077B9C00FF5E4B /* Country+CoreDataProperties.swift */,
+				9A97C62127077B9C00FF5E4B /* Candy+CoreDataClass.swift */,
+				9A97C62227077B9C00FF5E4B /* Candy+CoreDataProperties.swift */,
 				9A97C60B2706278100FF5E4B /* CoreDataProjectApp.swift */,
 				9A97C60D2706278100FF5E4B /* ContentView.swift */,
 				9A97C60F2706278200FF5E4B /* Assets.xcassets */,
@@ -146,8 +158,12 @@
 			files = (
 				9A97C6152706278200FF5E4B /* Persistence.swift in Sources */,
 				9A97C60E2706278100FF5E4B /* ContentView.swift in Sources */,
+				9A97C62427077B9C00FF5E4B /* Country+CoreDataProperties.swift in Sources */,
+				9A97C62627077B9C00FF5E4B /* Candy+CoreDataProperties.swift in Sources */,
 				9A97C6182706278200FF5E4B /* CoreDataProject.xcdatamodeld in Sources */,
+				9A97C62327077B9C00FF5E4B /* Country+CoreDataClass.swift in Sources */,
 				9A97C60C2706278100FF5E4B /* CoreDataProjectApp.swift in Sources */,
+				9A97C62527077B9C00FF5E4B /* Candy+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
