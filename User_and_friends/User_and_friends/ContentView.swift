@@ -12,11 +12,31 @@ struct ContentView: View {
     @State var users = [User]()
     
     var body: some View {
-        List(users, id: \.self){ user in
+        List(users, id: \.id){ user in
             VStack(alignment: .leading){
                 Text(user.name)
             }
         }
+        .onAppear(perform: {
+            loadData()
+        })
+    }
+    
+    func loadData() {
+        guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else {
+            print("Invalid Url")
+            return
+        }
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request){data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data){
+                    DispatchQueue.main.async {
+                        self.users = decodedResponse.results
+                    }
+                }
+            }
+        }.resume()
     }
 }
 
