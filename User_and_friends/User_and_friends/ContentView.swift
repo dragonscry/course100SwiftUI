@@ -7,19 +7,28 @@
 
 import SwiftUI
 
+ class AllUsers:ObservableObject {
+    @Published var users = [User]()
+}
+
 struct ContentView: View {
     
-    @State var users = [User]()
+    @ObservedObject var allUsersData = AllUsers()
     
     var body: some View {
-        List(users, id: \.id){ user in
-            VStack(alignment: .leading){
-                Text(user.name)
+        NavigationView {
+            List(allUsersData.users, id: \.id){ user in
+                NavigationLink(destination: UserDetails(allUsersData: allUsersData, user: user)) {
+                    VStack(alignment: .leading){
+                        Text(user.name)
+                    }
+                }
             }
-        }
-        .onAppear(perform: {
-            loadData()
+            .onAppear(perform: {
+                loadData()
         })
+            .navigationBarTitle("Users")
+        }
     }
     
     func loadData() {
@@ -32,7 +41,7 @@ struct ContentView: View {
             if let data = data {
                 if let decodedResponse = try? JSONDecoder().decode([User].self, from: data){
                     DispatchQueue.main.async {
-                        self.users = decodedResponse
+                        allUsersData.users = decodedResponse
                     }
                     
                     return

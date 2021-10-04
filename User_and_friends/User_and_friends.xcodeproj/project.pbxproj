@@ -12,6 +12,7 @@
 		9A6ABE0B2709F3D6002BACAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6ABE0A2709F3D6002BACAB /* Assets.xcassets */; };
 		9A6ABE0E2709F3D6002BACAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6ABE0D2709F3D6002BACAB /* Preview Assets.xcassets */; };
 		9A6ABE162709F404002BACAB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ABE152709F404002BACAB /* User.swift */; };
+		9A6ABE18270ADB71002BACAB /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ABE17270ADB71002BACAB /* UserDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		9A6ABE0D2709F3D6002BACAB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9A6ABE0F2709F3D6002BACAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A6ABE152709F404002BACAB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9A6ABE17270ADB71002BACAB /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				9A6ABE062709F3D5002BACAB /* User_and_friendsApp.swift */,
 				9A6ABE082709F3D5002BACAB /* ContentView.swift */,
+				9A6ABE17270ADB71002BACAB /* UserDetails.swift */,
 				9A6ABE152709F404002BACAB /* User.swift */,
 				9A6ABE0A2709F3D6002BACAB /* Assets.xcassets */,
 				9A6ABE0F2709F3D6002BACAB /* Info.plist */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A6ABE092709F3D5002BACAB /* ContentView.swift in Sources */,
+				9A6ABE18270ADB71002BACAB /* UserDetails.swift in Sources */,
 				9A6ABE072709F3D5002BACAB /* User_and_friendsApp.swift in Sources */,
 				9A6ABE162709F404002BACAB /* User.swift in Sources */,
 			);
