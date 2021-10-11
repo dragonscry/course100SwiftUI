@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A135D1B270F6A56008C544D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A135D1A270F6A56008C544D /* ImagePicker.swift */; };
+		9A135D1D2714BD84008C544D /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A135D1C2714BD84008C544D /* ImageSaver.swift */; };
 		9AEE4CF6270E254E0080594C /* InstafilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE4CF5270E254E0080594C /* InstafilterApp.swift */; };
 		9AEE4CF8270E254E0080594C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE4CF7270E254E0080594C /* ContentView.swift */; };
 		9AEE4CFA270E254F0080594C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEE4CF9270E254F0080594C /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		9A135D1A270F6A56008C544D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		9A135D1C2714BD84008C544D /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		9AEE4CF2270E254E0080594C /* Instafilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instafilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE4CF5270E254E0080594C /* InstafilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstafilterApp.swift; sourceTree = "<group>"; };
 		9AEE4CF7270E254E0080594C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				9AEE4CF5270E254E0080594C /* InstafilterApp.swift */,
 				9AEE4CF7270E254E0080594C /* ContentView.swift */,
+				9A135D1C2714BD84008C544D /* ImageSaver.swift */,
 				9A135D1A270F6A56008C544D /* ImagePicker.swift */,
 				9AEE4CF9270E254F0080594C /* Assets.xcassets */,
 				9AEE4CFE270E254F0080594C /* Info.plist */,
@@ -144,6 +147,7 @@
 				9A135D1B270F6A56008C544D /* ImagePicker.swift in Sources */,
 				9AEE4CF8270E254E0080594C /* ContentView.swift in Sources */,
 				9AEE4CF6270E254E0080594C /* InstafilterApp.swift in Sources */,
+				9A135D1D2714BD84008C544D /* ImageSaver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
