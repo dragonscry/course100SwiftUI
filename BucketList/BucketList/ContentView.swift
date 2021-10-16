@@ -15,8 +15,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        Text(String(getDocumentDirectory))
-            .padding()
+        MapView().edgesIgnoringSafeArea(.all)
     }
 }
 
