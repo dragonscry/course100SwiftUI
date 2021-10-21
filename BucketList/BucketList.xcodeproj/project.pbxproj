@@ -15,6 +15,7 @@
 		9A1F9EDA27209AE100940AA2 /* MKPointAnnotation-ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F9ED927209AE100940AA2 /* MKPointAnnotation-ObservableObject.swift */; };
 		9A1F9EDC27209C2400940AA2 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F9EDB27209C2400940AA2 /* EditView.swift */; };
 		9A1F9EDE2720A06300940AA2 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F9EDD2720A06300940AA2 /* Result.swift */; };
+		9A1F9EE02721E80200940AA2 /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F9EDF2721E80200940AA2 /* MKPointAnnotation-Codable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		9A1F9ED927209AE100940AA2 /* MKPointAnnotation-ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-ObservableObject.swift"; sourceTree = "<group>"; };
 		9A1F9EDB27209C2400940AA2 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		9A1F9EDD2720A06300940AA2 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		9A1F9EDF2721E80200940AA2 /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				9A1F9ED7271B72A100940AA2 /* MapView.swift */,
 				9A1F9ED927209AE100940AA2 /* MKPointAnnotation-ObservableObject.swift */,
 				9A1F9EDB27209C2400940AA2 /* EditView.swift */,
+				9A1F9EDF2721E80200940AA2 /* MKPointAnnotation-Codable.swift */,
 				9A1F9ECD271B4E5900940AA2 /* Assets.xcassets */,
 				9A1F9ECF271B4E5900940AA2 /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1F9EE02721E80200940AA2 /* MKPointAnnotation-Codable.swift in Sources */,
 				9A1F9EDE2720A06300940AA2 /* Result.swift in Sources */,
 				9A1F9ECC271B4E5900940AA2 /* ContentView.swift in Sources */,
 				9A1F9EDC27209C2400940AA2 /* EditView.swift in Sources */,
