@@ -22,6 +22,11 @@ struct FlagImage : View {
 
 
 struct ContentView: View {
+    let labels = [
+        "Estonia" : "Flag with three horizontal stripes of equal size. Top stripe blue, middle stripe black, bottom stripe white",
+        "France" : "Flag with three vertical stripes of equal size. Left stripe blue, middle stripe white, right stripe red"
+        // more flag
+    ]
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -53,6 +58,7 @@ struct ContentView: View {
                         self.flagTapped(number)
                     }) {
                         FlagImage(image: self.countries[number])
+                            .accessibility(label: Text(self.labels[self.countries[number], default: "Unknown Flag"]))
                     }
                     .rotation3DEffect( number == correctAnswer ?
                         Angle.degrees(animationAmount): Angle.degrees(0),

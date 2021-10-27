@@ -25,9 +25,14 @@ struct ContentView: View {
             VStack{
                 TextField("Enter your word", text: $newWord, onCommit: addNewWord).textFieldStyle(RoundedBorderTextFieldStyle()).autocapitalization(.none).padding()
                 Text("Your score : \(score)").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                List(usedWords, id: \.self){
-                    Image(systemName: "\($0.count).circle")
-                    Text($0)
+                List(usedWords, id: \.self){ word in
+                    HStack {
+                        Image(systemName: "\(word.count).circle")
+                        Text(word)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibility(label: Text("\(word), \(word.count) letters"))
+
                 }
             }
             .navigationBarItems(leading: Button(action: {restartGame()}, label: {
