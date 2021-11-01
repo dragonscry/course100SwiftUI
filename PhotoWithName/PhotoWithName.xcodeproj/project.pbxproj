@@ -14,6 +14,14 @@
 		9A133294272EF660003B0635 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A133293272EF660003B0635 /* ImagePicker.swift */; };
 		9A133296272F0083003B0635 /* SavedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A133295272F0083003B0635 /* SavedImage.swift */; };
 		9A133298272F055F003B0635 /* SaveImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A133297272F055F003B0635 /* SaveImageView.swift */; };
+		9A13329A272FD92C003B0635 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A133299272FD92C003B0635 /* ImageView.swift */; };
+		9A13329C2730607F003B0635 /* CodableMKPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13329B2730607F003B0635 /* CodableMKPointAnnotation.swift */; };
+		9A13329E27306425003B0635 /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13329D27306425003B0635 /* ModeView.swift */; };
+		9A1332A0273068D0003B0635 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13329F273068D0003B0635 /* LocationFetcher.swift */; };
+		9A1332A227306957003B0635 /* ViewItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1332A127306957003B0635 /* ViewItems.swift */; };
+		9A1332A427306CBE003B0635 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1332A327306CBE003B0635 /* CircleView.swift */; };
+		9A1332A627306CF9003B0635 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1332A527306CF9003B0635 /* MapView.swift */; };
+		9A1332A8273077ED003B0635 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1332A7273077ED003B0635 /* ManageData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +33,14 @@
 		9A133293272EF660003B0635 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9A133295272F0083003B0635 /* SavedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedImage.swift; sourceTree = "<group>"; };
 		9A133297272F055F003B0635 /* SaveImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageView.swift; sourceTree = "<group>"; };
+		9A133299272FD92C003B0635 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		9A13329B2730607F003B0635 /* CodableMKPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMKPointAnnotation.swift; sourceTree = "<group>"; };
+		9A13329D27306425003B0635 /* ModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
+		9A13329F273068D0003B0635 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		9A1332A127306957003B0635 /* ViewItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewItems.swift; sourceTree = "<group>"; };
+		9A1332A327306CBE003B0635 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		9A1332A527306CF9003B0635 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		9A1332A7273077ED003B0635 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +75,17 @@
 			children = (
 				9A133285272EF594003B0635 /* PhotoWithNameApp.swift */,
 				9A133287272EF594003B0635 /* ContentView.swift */,
+				9A13329B2730607F003B0635 /* CodableMKPointAnnotation.swift */,
+				9A133299272FD92C003B0635 /* ImageView.swift */,
 				9A133295272F0083003B0635 /* SavedImage.swift */,
 				9A133293272EF660003B0635 /* ImagePicker.swift */,
 				9A133297272F055F003B0635 /* SaveImageView.swift */,
+				9A1332A7273077ED003B0635 /* ManageData.swift */,
+				9A13329D27306425003B0635 /* ModeView.swift */,
+				9A13329F273068D0003B0635 /* LocationFetcher.swift */,
+				9A1332A127306957003B0635 /* ViewItems.swift */,
+				9A1332A327306CBE003B0635 /* CircleView.swift */,
+				9A1332A527306CF9003B0635 /* MapView.swift */,
 				9A133289272EF595003B0635 /* Assets.xcassets */,
 				9A13328B272EF595003B0635 /* Preview Content */,
 			);
@@ -146,11 +170,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A13329A272FD92C003B0635 /* ImageView.swift in Sources */,
+				9A1332A627306CF9003B0635 /* MapView.swift in Sources */,
+				9A13329E27306425003B0635 /* ModeView.swift in Sources */,
 				9A133294272EF660003B0635 /* ImagePicker.swift in Sources */,
+				9A13329C2730607F003B0635 /* CodableMKPointAnnotation.swift in Sources */,
 				9A133296272F0083003B0635 /* SavedImage.swift in Sources */,
 				9A133288272EF594003B0635 /* ContentView.swift in Sources */,
+				9A1332A427306CBE003B0635 /* CircleView.swift in Sources */,
+				9A1332A8273077ED003B0635 /* ManageData.swift in Sources */,
 				9A133298272F055F003B0635 /* SaveImageView.swift in Sources */,
 				9A133286272EF594003B0635 /* PhotoWithNameApp.swift in Sources */,
+				9A1332A0273068D0003B0635 /* LocationFetcher.swift in Sources */,
+				9A1332A227306957003B0635 /* ViewItems.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +316,8 @@
 				DEVELOPMENT_TEAM = 48RSDSQJLU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need for app";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -313,6 +347,8 @@
 				DEVELOPMENT_TEAM = 48RSDSQJLU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need for app";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

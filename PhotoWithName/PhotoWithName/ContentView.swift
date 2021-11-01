@@ -7,34 +7,44 @@
 
 import SwiftUI
 
-class SavedPhotos: ObservableObject {
-    @Published var arrayOfSavedImage = [SavedImage]()
-}
-
 struct ContentView: View {
     @State private var image: Image?
-    @State private var showingSavedImageView = false
-    @StateObject var savedPhotos = SavedPhotos()
-    var buttonImage = Image(systemName: "plus")
-    
+    @State private var inputImage: UIImage?
+    @State private var showingPictureView = false
+    @State private var pictures = [SavedImage]()
     var body: some View {
         NavigationView {
-            
-            List(savedPhotos.arrayOfSavedImage, id: \.id) { image in
-                Text(image.name)
-                
+            List {
+                ForEach(pictures) {
+                    picture in
+                    NavigationLink(destination: ImageView(picture: picture)) {
+                            Text(picture.imageName)
+                    }
+                }
+                .onDelete(perform: removeItems(at:))
             }
-                .navigationTitle("Photos")
-                .navigationBarItems(trailing: Button {
-                    showingSavedImageView = true
-                } label: {
-                    Image(systemName: "plus")
-                })
+            .navigationBarTitle(Text("Photos"))
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+                self.showingPictureView = true
+            }) {
+                Image(systemName: "plus")
+            })
+            .sheet(isPresented: $showingPictureView) {
+                SaveImageView(savedImages: self.$pictures)
+            }
+            .onAppear {
+                self.pictures = ManageData.loadPictures(pathName: "SavedImages")
+            }
         }
-        .sheet(isPresented: $showingSavedImageView){
-            SaveImageView(savedPhotos: savedPhotos)
-            
-        }
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        let image = pictures[offsets.first!]
+        
+        ManageData.removeImage(pathName: image.id.uuidString)
+        pictures.remove(atOffsets: offsets)
+        
+        ManageData.savedPictures(pathName: "SavedImages", savedImages: self.pictures)
     }
     
 }

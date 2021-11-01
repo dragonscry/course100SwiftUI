@@ -5,11 +5,11 @@
 //  Created by Denys on 31.10.2021.
 //
 
-import SwiftUI
+import Foundation
 
-struct SavedImage {
-    var id = UUID()
-    let name : String
-    let image : Image
+struct SavedImage: Codable, Identifiable {
+    var id: UUID
+    var imageName : String
+    var locations: [CodableMKPointAnnotation]
 }
 
