@@ -6,34 +6,36 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     @State private var backgroundColor = Color.red
     
     var body: some View {
         VStack {
-            Text("Hello Swift")
-                .padding()
-                .background(backgroundColor)
-            Text("Change Color")
-                .padding()
-                .contextMenu{
-                    Button(action: {
-                        self.backgroundColor = .red
-                    }) {
-                        Text("Red")
+            Button("Request Permission"){
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {success, error in
+                    if success {
+                        print("All set")
                     }
-                    Button(action: {
-                        self.backgroundColor = .green
-                    }) {
-                        Text("Green")
-                    }
-                    Button(action: {
-                        self.backgroundColor = .yellow
-                    }) {
-                        Text("Yellow")
+                    else if let error = error {
+                        print(error.localizedDescription)
                     }
                 }
+            }
+            
+            Button("Schedule Notification"){
+                let content = UNMutableNotificationContent()
+                content.title = "Feed the cat"
+                content.subtitle = "It looks hungry"
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request)
+            }
         }
     }
 }
