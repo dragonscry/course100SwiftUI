@@ -64,7 +64,9 @@ struct ProspectsView: View {
                             }
                         }
                         Spacer()
-                        Image(systemName: prospect.isContacted ? "book.fill" : "book").foregroundColor(prospect.isContacted ? Color.green : Color.red)
+                        if (self.filter == .none) {
+                            Image(systemName: prospect.isContacted ? "book.fill" : "book").foregroundColor(prospect.isContacted ? Color.green : Color.red)
+                        }
                     }
                 }
             }
