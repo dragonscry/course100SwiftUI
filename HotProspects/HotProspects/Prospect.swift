@@ -19,19 +19,33 @@ class Prospects: ObservableObject {
     static let saveKey = "SavedData"
     
     init() {
-        if let data = UserDefaults.standard.data(forKey: Self.saveKey) {
-            if let decoded = try? JSONDecoder().decode([Prospect].self, from: data){
-                self.people = decoded
-                return
-            }
-        }
         
         self.people = []
+        
+        let filename = getDocumentsDirectory().appendingPathComponent(Self.saveKey)
+        
+        do {
+            let data = try Data(contentsOf: filename)
+            people = try JSONDecoder().decode([Prospect].self, from: data)
+        } catch {
+            print("Unable to load saved data")
+        }
+        
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+        
     }
     
     func save() {
-        if let encoded = try? JSONEncoder().encode(people) {
-            UserDefaults.standard.set(encoded, forKey: Self.saveKey)
+        do {
+            let filename = getDocumentsDirectory().appendingPathComponent(Self.saveKey)
+            let data = try JSONEncoder().encode(self.people)
+            try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
+        } catch {
+            print("Unable to save data")
         }
     }
     
