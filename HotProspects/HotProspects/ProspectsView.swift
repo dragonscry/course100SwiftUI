@@ -40,10 +40,44 @@ struct ProspectsView: View {
         }
     }
     
+    enum SortType {
+        case name, date
+    }
+    
+    @State private var sortType = SortType.name
+    
+    var sortedProspects: [Prospect] {
+        switch sortType {
+        case .name:
+            return filteredProspects.sorted {
+                $0.name < $1.name
+            }
+        case .date:
+            return filteredProspects.sorted {
+                $0.dateAdded < $1.dateAdded
+            }
+        }
+    }
+    
+    enum filterChecked {
+        case name, date
+    }
+    
+    func checkFilter(forType: filterChecked) -> String {
+        switch forType {
+        case .name:
+            return sortType == .name ? "📌" : ""
+        case .date:
+            return sortType == .date ? "📌" : ""
+        }
+    }
+    
+    @State private var showingSortedAction = false
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(filteredProspects) {
+                ForEach(sortedProspects) {
                     prospect in
                     HStack {
                         VStack(alignment: .leading){
@@ -71,7 +105,7 @@ struct ProspectsView: View {
                 }
             }
             .navigationBarTitle(title)
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Button(action: {self.showingSortedAction = true}, label: {Text("Sorting")}), trailing: Button(action: {
                 self.isShowingScanner = true
             }) {
                 Image(systemName: "qrcode.viewfinder")
@@ -79,6 +113,11 @@ struct ProspectsView: View {
             })
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@gg.co", completion: self.handleScan)
+            }
+            .actionSheet(isPresented: $showingSortedAction) {() -> ActionSheet in
+                ActionSheet(title: Text("Sorted by:"), message: nil, buttons: [.default(Text("Name\(checkFilter(forType:.name))")){
+                    self.sortType = .name},.default(Text("Date\(checkFilter(forType:.date))")){
+                        self.sortType = .date}, .cancel()])
             }
         }
     }
@@ -93,6 +132,7 @@ struct ProspectsView: View {
             let person = Prospect()
             person.name = details[0]
             person.emailAddress = details[1]
+            person.dateAdded = Date()
             self.prospects.add(person)
         case .failure(let error):
             print("Scanning Failed")

@@ -12,6 +12,7 @@ class Prospect: Identifiable, Codable {
     var name = "Anonymous"
     var emailAddress = ""
     fileprivate(set) var isContacted = false
+    var dateAdded = Date()
 }
 
 class Prospects: ObservableObject {
@@ -19,16 +20,16 @@ class Prospects: ObservableObject {
     static let saveKey = "SavedData"
     
     init() {
-        
         self.people = []
         
         let filename = getDocumentsDirectory().appendingPathComponent(Self.saveKey)
-        
         do {
             let data = try Data(contentsOf: filename)
             people = try JSONDecoder().decode([Prospect].self, from: data)
+            self.people = people
         } catch {
             print("Unable to load saved data")
+            self.people = []
         }
         
     }
