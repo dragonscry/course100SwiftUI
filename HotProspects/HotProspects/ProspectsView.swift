@@ -45,35 +45,39 @@ struct ProspectsView: View {
             List {
                 ForEach(filteredProspects) {
                     prospect in
-                    VStack(alignment: .leading){
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
-                    }
-                    .contextMenu{
-                        Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
-                            self.prospects.toggle(prospect)
+                    HStack {
+                        VStack(alignment: .leading){
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
                         }
-                        
-                        if !prospect.isContacted {
-                            Button("Remind me") {
-                                self.addNotification(for: prospect)
+                        .contextMenu{
+                            Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
+                                self.prospects.toggle(prospect)
+                            }
+                            
+                            if !prospect.isContacted {
+                                Button("Remind me") {
+                                    self.addNotification(for: prospect)
+                                }
                             }
                         }
+                        Spacer()
+                        Image(systemName: prospect.isContacted ? "book.fill" : "book").foregroundColor(prospect.isContacted ? Color.green : Color.red)
                     }
                 }
             }
-                .navigationBarTitle(title)
-                .navigationBarItems(trailing: Button(action: {
-                    self.isShowingScanner = true
-                }) {
-                    Image(systemName: "qrcode.viewfinder")
-                    Text("Scan")
-                })
-                .sheet(isPresented: $isShowingScanner) {
-                    CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@gg.co", completion: self.handleScan)
-                }
+            .navigationBarTitle(title)
+            .navigationBarItems(trailing: Button(action: {
+                self.isShowingScanner = true
+            }) {
+                Image(systemName: "qrcode.viewfinder")
+                Text("Scan")
+            })
+            .sheet(isPresented: $isShowingScanner) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@gg.co", completion: self.handleScan)
+            }
         }
     }
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
