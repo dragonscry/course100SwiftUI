@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0F1C462751891C0092AD4A /* EditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F1C452751891C0092AD4A /* EditCard.swift */; };
 		9A1332DC2743E739003B0635 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1332DB2743E739003B0635 /* FlashzillaApp.swift */; };
 		9A1332DE2743E739003B0635 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1332DD2743E739003B0635 /* ContentView.swift */; };
 		9A1332E02743E73B003B0635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1332DF2743E73B003B0635 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A0F1C452751891C0092AD4A /* EditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCard.swift; sourceTree = "<group>"; };
 		9A1332D82743E739003B0635 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1332DB2743E739003B0635 /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
 		9A1332DD2743E739003B0635 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				9A1332DB2743E739003B0635 /* FlashzillaApp.swift */,
 				9A1332DD2743E739003B0635 /* ContentView.swift */,
 				9A1332E92746D8DD003B0635 /* Card.swift */,
+				9A0F1C452751891C0092AD4A /* EditCard.swift */,
 				9A1332DF2743E73B003B0635 /* Assets.xcassets */,
 				9A1332E12743E73B003B0635 /* Preview Content */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				9A1332DE2743E739003B0635 /* ContentView.swift in Sources */,
 				9A1332EA2746D8DD003B0635 /* Card.swift in Sources */,
+				9A0F1C462751891C0092AD4A /* EditCard.swift in Sources */,
 				9A1332EC2746DFB0003B0635 /* CardView.swift in Sources */,
 				9A1332DC2743E739003B0635 /* FlashzillaApp.swift in Sources */,
 			);
