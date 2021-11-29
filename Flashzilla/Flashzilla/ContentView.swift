@@ -20,7 +20,11 @@ struct ContentView: View {
     @State private var cards = [Card]()
     
     @State private var isActive = true
-    @State private var timeRemaining = 100
+    
+    @State private var isTimeOut = false
+    
+    @State private var timeRemaining = 10
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @State private var showingEditScreen = false
@@ -55,16 +59,19 @@ struct ContentView: View {
                         .accessibility(hidden: index < self.cards.count - 1)
                     }
                 }
+                .alert(isPresented: $isTimeOut){
+                    Alert(title: Text("Time is out"), message: Text("Try Again!"), dismissButton: .default(Text("OK"), action: resetCards))
+                }
                 .allowsHitTesting(timeRemaining > 0)
                 
-                if cards.isEmpty {
+                if cards.isEmpty{
                     Button("Start Again", action: resetCards)
                         .padding()
                         .background(Color.white)
                         .foregroundColor(Color.black)
                         .clipShape(Capsule())
                 }
-                
+                                
             }
             
             VStack {
@@ -130,6 +137,9 @@ struct ContentView: View {
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
             }
+            else {
+                isTimeOut = true
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) {
             _ in
@@ -160,7 +170,7 @@ struct ContentView: View {
     
     func resetCards() {
         cards = [Card](repeating: Card.example, count: 10)
-        timeRemaining = 100
+        timeRemaining = 10
         isActive = true
         loadData()
     }
