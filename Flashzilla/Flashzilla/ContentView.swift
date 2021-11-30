@@ -27,7 +27,14 @@ struct ContentView: View {
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    @State private var showingEditScreen = false
+    @State private var isShowingSheet = false
+    
+    enum TypeOfSheet {
+        case edit, settings
+    }
+    @State private var typeSheet : TypeOfSheet = .edit
+    
+    @State private var returnWrongCards = false
     
     var body: some View {
         ZStack{
@@ -49,9 +56,9 @@ struct ContentView: View {
                 ZStack {
                     ForEach(0..<cards.count, id: \.self) {
                         index in
-                        CardView(card: self.cards[index]) {
+                        CardView(card: self.cards[index], isWrongCard: self.returnWrongCards) { (correct) in
                             withAnimation{
-                                self.removeCard(at: index)
+                                self.removeCard(at: index, isSuccess: correct)
                             }
                         }
                         .stacked(at: index, in: self.cards.count)
@@ -71,21 +78,37 @@ struct ContentView: View {
                         .foregroundColor(Color.black)
                         .clipShape(Capsule())
                 }
-                                
+                
             }
             
             VStack {
                 HStack {
                     Spacer()
-                    Button(action: {
-                        self.showingEditScreen = true
+                    VStack{
+                        Button(action: {
+                            self.typeSheet = .edit
+                            self.isShowingSheet = true
+                            
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .padding()
+                                .background(Color.black.opacity(0.75))
+                                .clipShape(Circle())
+                        }
+                        Button(action: {
+                            self.typeSheet = .settings
+                            self.isShowingSheet = true
+                            
+                        }) {
+                            Image(systemName: "gear")
+                                .padding()
+                                .background(Color.black.opacity(0.75))
+                                .clipShape(Circle())
+                        }
                         
-                    }) {
-                        Image(systemName: "plus.circle")
-                            .padding()
-                            .background(Color.black.opacity(0.75))
-                            .clipShape(Circle())
                     }
+                    
+                    
                 }
                 Spacer()
             }
@@ -99,26 +122,26 @@ struct ContentView: View {
                     HStack {
                         Button(action: {
                             withAnimation{
-                                self.removeCard(at: self.cards.count - 1)
+                                self.removeCard(at: self.cards.count - 1, isSuccess: false)
                             }
                         }) {
-                        Image(systemName: "xmark.circle")
-                            .padding()
-                            .background(Color.black.opacity(0.7))
-                            .clipShape(Circle())
+                            Image(systemName: "xmark.circle")
+                                .padding()
+                                .background(Color.black.opacity(0.7))
+                                .clipShape(Circle())
                         }
                         .accessibility(label: Text("Wrong"))
                         .accessibility(hint: Text("Mark your answer as being incorrect"))
                         Spacer()
                         Button(action: {
                             withAnimation{
-                                self.removeCard(at: self.cards.count - 1)
+                                self.removeCard(at: self.cards.count - 1, isSuccess: true)
                             }
                         }) {
-                        Image(systemName: "checkmark.circle")
-                            .padding()
-                            .background(Color.black.opacity(0.7))
-                            .clipShape(Circle())
+                            Image(systemName: "checkmark.circle")
+                                .padding()
+                                .background(Color.black.opacity(0.7))
+                                .clipShape(Circle())
                         }
                         .accessibility(label: Text("Correct"))
                         .accessibility(hint: Text("Mark your answer being correct"))
@@ -151,17 +174,29 @@ struct ContentView: View {
                 self.isActive = true
             }
         }
-        .sheet(isPresented: $showingEditScreen, onDismiss: resetCards){
-            EditCard()
+        .sheet(isPresented: $isShowingSheet, onDismiss: resetCards){
+            switch self.typeSheet {
+            case .edit:
+                EditCard()
+            case .settings:
+                SettingsView(returnWrongCards: $returnWrongCards)
+            }
         }
         .onAppear(perform: resetCards)
         
     }
     
-    func removeCard(at index: Int)
+    func removeCard(at index: Int, isSuccess: Bool)
     {
         guard index >= 0 else {return}
-        cards.remove(at: index)
+        
+        
+        let card = cards.remove(at: index)
+        if returnWrongCards && !isSuccess {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                self.cards.insert(card, at: 0)
+            }
+        }
         
         if cards.isEmpty {
             isActive = false
@@ -170,7 +205,7 @@ struct ContentView: View {
     
     func resetCards() {
         cards = [Card](repeating: Card.example, count: 10)
-        timeRemaining = 10
+        timeRemaining = 100
         isActive = true
         loadData()
     }
@@ -187,5 +222,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
