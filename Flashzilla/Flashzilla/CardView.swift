@@ -30,7 +30,7 @@ struct CardView: View {
                         Color.white.opacity(1-Double(abs(offset.width/50))))
                 .background(
                     differentiateWithoutColor ? nil : RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(offset.width > 0 ? Color.green: Color.red)
+                        .fill(self.setColor(for: self.offset.width))
                 )
                 .shadow(radius: 10)
             VStack{
@@ -81,6 +81,17 @@ struct CardView: View {
             self.isShowingAnswer.toggle()
         }
         .animation(.spring())
+    }
+    
+    func setColor(for offset: CGFloat) -> Color {
+        switch offset {
+        case let a where a > 0:
+            return .green
+        case let b where b < 0:
+            return .red
+        default:
+            return .white
+        }
     }
 }
 
