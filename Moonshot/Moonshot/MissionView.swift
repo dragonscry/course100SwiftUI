@@ -21,11 +21,15 @@ struct MissionView: View {
         GeometryReader {geometry in
             ScrollView(.vertical){
                 VStack{
-                    Image(self.mission.image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: geometry.size.width * 0.7)
-                        .padding(.top)
+                    GeometryReader { geo in
+                        Image(self.mission.image)
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(scaleValue(mainFrame: geometry.frame(in: .global).minY, minY: geo.frame(in: .global).minY))
+                            
+                    }
+                    .frame(height: 400)
+                    
                     Text("Launch Date: \(mission.formattedLaunchDate)")
                         .foregroundColor(.secondary)
                     Text(self.mission.description).padding()
@@ -58,8 +62,8 @@ struct MissionView: View {
                     Spacer(minLength: 25)
                 }
             }
+            .navigationBarTitle(Text(mission.displayName), displayMode: .inline)
         }
-        .navigationBarTitle(Text(mission.displayName), displayMode: .inline)
     }
     
     init(mission: Mission, astronauts: [Astronaut]){
@@ -75,6 +79,18 @@ struct MissionView: View {
             }
         }
         self.astronauts = matches
+    }
+    
+    func scaleValue(mainFrame: CGFloat, minY: CGFloat) -> CGFloat {
+        let scale = (minY / mainFrame)
+        
+        if scale > 1 {
+            return 1
+        } else if scale > 0.8 {
+            return scale
+        } else {
+            return 0.8
+        }
     }
 }
 
