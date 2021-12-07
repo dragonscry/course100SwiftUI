@@ -25,14 +25,20 @@ struct ContentView: View {
             VStack{
                 TextField("Enter your word", text: $newWord, onCommit: addNewWord).textFieldStyle(RoundedBorderTextFieldStyle()).autocapitalization(.none).padding()
                 Text("Your score : \(score)").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                List(usedWords, id: \.self){ word in
-                    HStack {
-                        Image(systemName: "\(word.count).circle")
-                        Text(word)
+                
+                GeometryReader {fullView in
+                    List(usedWords, id: \.self){ word in
+                        GeometryReader { geo in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                                .foregroundColor(Color(red: Double((geo.frame(in: .global).maxY) / 800), green: 0.6, blue: 0.4))
+                            Text(word)
+                        }
+                        .accessibilityElement(children: .ignore)
+                        .accessibility(label: Text("\(word), \(word.count) letters"))
+                        .offset(x: max(0, (geo.frame(in: .global).maxY / fullView.size.height) * (geo.frame(in: .global).maxY) - 850 ), y: 0)
+                        }
                     }
-                    .accessibilityElement(children: .ignore)
-                    .accessibility(label: Text("\(word), \(word.count) letters"))
-
                 }
             }
             .navigationBarItems(leading: Button(action: {restartGame()}, label: {
@@ -98,7 +104,7 @@ struct ContentView: View {
         startGame()
         usedWords = [String]()
         score = 0
-
+        
     }
     
     func isOriginal (word: String) -> Bool {
@@ -132,12 +138,12 @@ struct ContentView: View {
     
     func notFirstLetters(word: String) -> Bool{
         let index = rootWord.firstIndex(of: word[word.startIndex])
-            for i in 0..<word.count {
-                if word[word.index(word.startIndex, offsetBy: i)] != rootWord[rootWord.index(index ?? rootWord.startIndex, offsetBy: i)]{
-                    return true
-                }
+        for i in 0..<word.count {
+            if word[word.index(word.startIndex, offsetBy: i)] != rootWord[rootWord.index(index ?? rootWord.startIndex, offsetBy: i)]{
+                return true
             }
-            return false
+        }
+        return false
     }
     
     func wordError(title:String, message:String){
