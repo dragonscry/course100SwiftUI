@@ -25,13 +25,14 @@ struct RollView: View {
     
     @State var results = [1,1,1]
     
-    @State var diceCount = 3
+    @Binding var numberOfEdges : Int
+    @Binding var  diceCount : Int
     
     var body: some View {
         
         VStack {
             HStack {
-                ForEach(0..<diceCount){ dice in
+                ForEach(0..<diceCount, id: \.self){ dice in
                     Dice(result: results[dice])
                 }
             }
@@ -54,23 +55,25 @@ struct RollView: View {
             
         }
         .frame(maxWidth: .infinity)
+        .onAppear(perform: rollDice)
     }
     
     func rollDice() {
         var tempArray = [Int]()
-        for _ in 0..<diceCount {
-            tempArray.append(Int.random(in: 1...6))
+        for _ in 0..<diceCount{
+            tempArray.append(Int.random(in: 1...numberOfEdges))
         }
         results = tempArray
     }
     
     func totalResult() -> Int {
+        rollDice()
         return self.results.reduce(0, +)
     }
 }
 
-struct RollView_Previews: PreviewProvider {
-    static var previews: some View {
-        RollView()
-    }
-}
+//struct RollView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RollView()
+//    }
+//}

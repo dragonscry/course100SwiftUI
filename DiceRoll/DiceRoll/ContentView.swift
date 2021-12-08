@@ -8,14 +8,18 @@
 import SwiftUI
 import CoreData
 
+
 struct ContentView: View {
     
     @State private var isShowingSettings = false
     
+    @State var numberOfDice = 1
+    @State var numberofEdge = 5
+    
     var body: some View {
         NavigationView {
             TabView {
-                RollView()
+                RollView(numberOfEdges: $numberofEdge, diceCount: $numberOfDice)
                     .tabItem {
                         VStack {
                             Text("Roll dice")
@@ -38,7 +42,7 @@ struct ContentView: View {
                 Text("Settings")
             })
             .sheet(isPresented: $isShowingSettings){
-                SettingsView()
+                SettingsView(diceCount: $numberOfDice, edgeCount: $numberofEdge)
             }
         }
     }
