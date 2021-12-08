@@ -22,14 +22,25 @@ struct Dice: View {
 }
 
 struct RollView: View {
+    
+    @State var results = [1,1,1]
+    
+    @State var diceCount = 3
+    
     var body: some View {
         
         VStack {
-            Dice()
-                .padding(.top, 50)
+            HStack {
+                ForEach(0..<diceCount){ dice in
+                    Dice(result: results[dice])
+                }
+            }
+            
+            Text("Total result is \(totalResult())")
+            
             Spacer()
             Button(action: {
-                //Roll dice
+                rollDice()
             }) {
                 Text("Roll Dice")
                     .font(.largeTitle)
@@ -43,6 +54,18 @@ struct RollView: View {
             
         }
         .frame(maxWidth: .infinity)
+    }
+    
+    func rollDice() {
+        var tempArray = [Int]()
+        for _ in 0..<diceCount {
+            tempArray.append(Int.random(in: 1...6))
+        }
+        results = tempArray
+    }
+    
+    func totalResult() -> Int {
+        return self.results.reduce(0, +)
     }
 }
 
