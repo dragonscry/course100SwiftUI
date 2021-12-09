@@ -7,21 +7,26 @@
 
 import SwiftUI
 
-struct Dice: View {
+struct DiceView: View {
     var result = 1
+    var height: CGFloat
+    var widht: CGFloat
+    var fontSize: CGFloat
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.yellow)
-            .frame(width: 100, height: 100)
+                .frame(width: self.widht, height: self.height)
             Text("\(result)")
-                .font(.system(size: 48))
+                .font(.system(size: self.fontSize))
                 .foregroundColor(.white)
         }
     }
 }
 
 struct RollView: View {
+    
+    @Environment(\.managedObjectContext) var viewContext
     
     @State var results = [1,1,1]
     
@@ -33,7 +38,7 @@ struct RollView: View {
         VStack {
             HStack {
                 ForEach(0..<diceCount, id: \.self){ dice in
-                    Dice(result: results[dice])
+                    DiceView(result: results[dice], height: 100, widht: 100, fontSize: 48)
                 }
             }
             
@@ -55,20 +60,43 @@ struct RollView: View {
             
         }
         .frame(maxWidth: .infinity)
-        .onAppear(perform: rollDice)
     }
     
     func rollDice() {
         var tempArray = [Int]()
-        for _ in 0..<diceCount{
+        for _ in 0..<3{
             tempArray.append(Int.random(in: 1...numberOfEdges))
         }
         results = tempArray
+        self.saveToCoreDate()
     }
     
     func totalResult() -> Int {
-        rollDice()
-        return self.results.reduce(0, +)
+        var temp = 0
+        for i in 0..<diceCount {
+            temp += results[i]
+        }
+        return temp
+    }
+    
+    func saveToCoreDate() {
+        let newResult = Result(context: viewContext)
+        newResult.id = UUID()
+        newResult.date = Date()
+        newResult.totalResult = Int16(self.totalResult())
+        for i in 0..<self.diceCount {
+            let newDice = Dice(context: self.viewContext)
+            newDice.id = UUID()
+            newDice.diceResult = Int16(results[i])
+            newDice.numberOfSides = Int16(numberOfEdges)
+            newResult.addToDice(newDice)
+        }
+        newResult.numberOfDice = Int16(diceCount)
+        do {
+            try self.viewContext.save()
+        } catch {
+            print("Error to save in Core Datq")
+        }
     }
 }
 

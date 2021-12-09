@@ -14,7 +14,7 @@ struct ContentView: View {
     @State private var isShowingSettings = false
     
     @State var numberOfDice = 1
-    @State var numberofEdge = 5
+    @State var numberofEdge = 6
     
     var body: some View {
         NavigationView {
@@ -35,7 +35,6 @@ struct ContentView: View {
                     }
             }
             .tabViewStyle(DefaultTabViewStyle())
-            .navigationTitle("Roll Dice")
             .navigationBarItems(trailing: Button(action: {
                 isShowingSettings = true
             }){

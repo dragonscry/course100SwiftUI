@@ -11,67 +11,68 @@ import CoreData
 struct ResultsView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @FetchRequest(entity: Result.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Result.totalResult, ascending: false)]) var results: FetchedResults<Result>
+    
+    @State private var countOfDice = 1
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            VStack {
+                List {
+                    ForEach(results, id: \.wrappedId) {
+                        result in
+                        HStack {
+                            HStack {
+                                DiceView(result: self.findDiceIndex(at: result) + 1, height: 24, widht: 24, fontSize: 10)
+                                ForEach(result.diceArray, id: \.diceResult) { dice in
+                                    DiceView(result: dice.wrappedDiceResult, height: 54, widht: 54, fontSize: 24)
+                                    
+                                }
+                            }
+                            Spacer()
+                            
+                            VStack(alignment: .leading) {
+                                HorizontalTextView(text: "Result: ", textResult: "\(result.wrappedTotalResult)", fontSize: 16, textColor: .green, resultColor: .red)
+                                HorizontalTextView(text: "Date: ", textResult: "\(result.wrappedDate)", fontSize: 12, textColor: .blue, resultColor: .purple)
+                                HorizontalTextView(text: "Time: ", textResult: "\(result.wrappedTime)", fontSize: 12, textColor: .blue, resultColor: .primary)
+                            }
+                        }
                     }
+                    .onDelete(perform: deleteResult(at:))
                 }
-                .onDelete(perform: deleteItems)
+                HorizontalTextView(text: "Number of results: ", textResult: "\(results.count)", fontSize: 30, textColor: .green, resultColor: .red)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            .navigationTitle("Results")
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    func deleteResult(at offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                let result = results[index]
+                for dice in result.diceArray {
+                    viewContext.delete(dice)
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                viewContext.delete(result)
+                
+                do {
+                    try viewContext.save()
+                } catch {
+                    print("Error with saving after deleting result")
                 }
             }
-            Text("Select an item")
         }
     }
     
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    func findDiceIndex(at result: Result) -> Int {
+        guard let index = results.firstIndex(of: result) else {
+            return 0
         }
+        return index
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+    
+    
 
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -82,8 +83,8 @@ private let itemFormatter: DateFormatter = {
 
 }
 
-struct ResultsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ResultsView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct ResultsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ResultsView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}

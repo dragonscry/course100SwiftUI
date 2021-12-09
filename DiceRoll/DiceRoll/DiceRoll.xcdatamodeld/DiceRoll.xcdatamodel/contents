@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Dice" representedClassName="Dice" syncable="YES">
+        <attribute name="diceResult" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="numberOfSides" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="mainResult" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Result" inverseName="dice" inverseEntity="Result"/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="Result" representedClassName="Result" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="numberOfDice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalResult" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="dice" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dice" inverseName="mainResult" inverseEntity="Dice"/>
+    </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Dice" positionX="-63" positionY="-9" width="128" height="14"/>
+        <element name="Result" positionX="-54" positionY="0" width="128" height="14"/>
     </elements>
 </model>
