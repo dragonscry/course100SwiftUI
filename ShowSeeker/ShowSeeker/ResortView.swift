@@ -18,9 +18,16 @@ struct ResortView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0){
-                Image(decorative: resort.id)
-                    .resizable()
-                    .scaledToFit()
+                ZStack(alignment: .bottomTrailing) {
+                    Image(decorative: resort.id)
+                        .resizable()
+                        .scaledToFit()
+                    Text(resort.imageCredit)
+                        .padding(.horizontal, 4)
+                        .foregroundColor(.white).opacity(0.6)
+                        .background(Color(.black))
+
+                }
                 
                 Group {
                     HStack {
@@ -79,6 +86,6 @@ struct ResortView: View {
 }
 //struct ResortView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ResortView()
+//        ResortView(resort: Resort.example)
 //    }
 //}
