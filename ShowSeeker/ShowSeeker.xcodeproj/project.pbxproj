@@ -20,6 +20,7 @@
 		9A1E396D27692393005F2C75 /* ResortDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E396C27692393005F2C75 /* ResortDetailsView.swift */; };
 		9A1E396F276FAF9F005F2C75 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E396E276FAF9F005F2C75 /* Facility.swift */; };
 		9A1E3971276FB807005F2C75 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E3970276FB807005F2C75 /* Favorites.swift */; };
+		9A1E39732777AA7C005F2C75 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E39722777AA7C005F2C75 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		9A1E396C27692393005F2C75 /* ResortDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResortDetailsView.swift; sourceTree = "<group>"; };
 		9A1E396E276FAF9F005F2C75 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		9A1E3970276FB807005F2C75 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		9A1E39722777AA7C005F2C75 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			children = (
 				9A1E39522767D9C4005F2C75 /* ShowSeekerApp.swift */,
 				9A1E39542767D9C4005F2C75 /* ContentView.swift */,
+				9A1E39722777AA7C005F2C75 /* Settings.swift */,
 				9A1E396A2769229A005F2C75 /* SkiDetailsView.swift */,
 				9A1E396C27692393005F2C75 /* ResortDetailsView.swift */,
 				9A1E396827691C54005F2C75 /* ResortView.swift */,
@@ -174,6 +177,7 @@
 				9A1E396327690F7E005F2C75 /* Resort.swift in Sources */,
 				9A1E396927691C55005F2C75 /* ResortView.swift in Sources */,
 				9A1E39532767D9C4005F2C75 /* ShowSeekerApp.swift in Sources */,
+				9A1E39732777AA7C005F2C75 /* Settings.swift in Sources */,
 				9A1E3965276911AA005F2C75 /* Bundle-Decodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

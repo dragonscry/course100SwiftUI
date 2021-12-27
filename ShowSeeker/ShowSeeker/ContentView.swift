@@ -7,15 +7,59 @@
 
 import SwiftUI
 
+enum SortedResorts: String, CaseIterable{
+    case none
+    case country
+    case alphabetical
+}
+
 struct ContentView: View {
     
     @ObservedObject var favorites = Favorites()
     
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     
+    @State var sortedList : SortedResorts = .none
+    
+    @State var countryForFiltering = "All"
+    @State var sizeForFiltering = 0
+    @State var priceForFiltering = 0
+    
+    var sortedResorts: [Resort] {
+        
+        switch sortedList {
+        case .none:
+            return resorts
+        case .country:
+            return resorts.sorted {$0.country < $1.country}
+        case .alphabetical:
+            return resorts.sorted {$0.name < $1.name }
+        }
+    }
+    
+    var filteredResorts: [Resort] {
+        var tempResort = sortedResorts
+        
+        tempResort = tempResort.filter({ (resort) -> Bool in
+            resort.country == self.countryForFiltering || self.countryForFiltering == "All"
+        })
+        
+        tempResort = tempResort.filter({ (resort) -> Bool in
+            resort.size == self.sizeForFiltering || self.sizeForFiltering == 0
+        })
+        
+        tempResort = tempResort.filter({ (resort) -> Bool in
+            resort.price == self.priceForFiltering || self.priceForFiltering == 0
+        })
+        
+        return tempResort
+    }
+    
+    @State var isShowingSettings = false
+    
     var body: some View {
         NavigationView {
-            List(resorts) { resort in
+            List(filteredResorts) { resort in
                 NavigationLink(destination: ResortView(resort: resort)) {
                     Image(resort.country)
                         .resizable()
@@ -45,11 +89,27 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Resorts")
+            .navigationBarItems(trailing: Button(action: {
+                isShowingSettings = true
+            }){
+                Text("Settings")
+            })
             
             WelcomeView()
         }
         .environmentObject(favorites)
+        .sheet(isPresented: $isShowingSettings){
+            Settings(sorted: $sortedList, countryForFiltering: $countryForFiltering, sizeForFiltering: $sizeForFiltering, priceForFiltering: $priceForFiltering)
+        }
     }
+    
+//    func countries() -> [String] {
+//        var tempArr: Set<String> = ["All"]
+//        for resort in resorts {
+//            tempArr.insert(resort.country)
+//        }
+//        return Array(tempArr)
+//    }
 }
 
 extension View {
