@@ -13,7 +13,9 @@ struct Settings: View {
     
     @Binding var sorted : SortedResorts
     
-    let countries = ["All", "United States", "Italy", "France", "Canada", "Austria"]
+    
+    
+    let countries : Array<String>
     let sizes = ["All", "Small", "Average", "Large"]
     let prices = ["All", "$", "$$", "$$$"]
     

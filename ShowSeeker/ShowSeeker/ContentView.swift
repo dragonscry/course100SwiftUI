@@ -25,6 +25,8 @@ struct ContentView: View {
     @State var sizeForFiltering = 0
     @State var priceForFiltering = 0
     
+    @State var countriesArray: Set<String> = ["All"]
+    
     var sortedResorts: [Resort] {
         
         switch sortedList {
@@ -99,17 +101,16 @@ struct ContentView: View {
         }
         .environmentObject(favorites)
         .sheet(isPresented: $isShowingSettings){
-            Settings(sorted: $sortedList, countryForFiltering: $countryForFiltering, sizeForFiltering: $sizeForFiltering, priceForFiltering: $priceForFiltering)
+            Settings(sorted: $sortedList, countries: Array(countriesArray).sorted(by: <), countryForFiltering: $countryForFiltering, sizeForFiltering: $sizeForFiltering, priceForFiltering: $priceForFiltering)
         }
+        .onAppear(perform: countries)
     }
     
-//    func countries() -> [String] {
-//        var tempArr: Set<String> = ["All"]
-//        for resort in resorts {
-//            tempArr.insert(resort.country)
-//        }
-//        return Array(tempArr)
-//    }
+    func countries(){
+        for resort in resorts {
+            countriesArray.insert(resort.country)
+        }
+    }
 }
 
 extension View {
